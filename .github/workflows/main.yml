@@ -30,15 +30,13 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 4. 执行 Gradle 打包命令 (生成 Release 版本的 APK)
-      - name: Build Release APK
+      # 4. 执行 Gradle 打包命令 (生成 Debug 版本的 APK)
+      - name: Build Debug APK
         run: ./gradlew assembleDebug
 
       # 5. 提取并上传生成的 APK 文件
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-apk
-          # 请根据你的实际项目结构调整此路径
-          # 通常默认路径为：app/build/outputs/apk/release/*.apk
-          path: app/build/outputs/apk/release/*.apk
+          name: app-debug-apk # 修改了 Artifact 名称
+          path: app/build/outputs/apk/debug/*.apk # 修改了这里的路径为 debug
